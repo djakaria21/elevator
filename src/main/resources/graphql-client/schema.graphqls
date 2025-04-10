@@ -1,8 +1,32 @@
 type Query {
-    shows(titleFilter: String): [Show]
+    findAndSendElevatorCar(elevatorFilter: Int): [ElevatorCar]
 }
 
-type Show {
-    title: String
-    releaseYear: Int
+type BuildingKeypad {
+    id: ID!
+    currentFloor: Int
+    floors: [Int]
+}
+
+type KeypadRequest {
+    id: ID!
+    startingFloor: Int
+    endingFloor: Int
+}
+
+
+type ElevatorSystem {
+    id: ID!
+    building: [BuildingKeypad]
+    keypadRequests: [KeypadRequest]
+    elevators: [ElevatorCar]
+}
+
+type ElevatorCar {
+    id: ID!
+    currentFloor: Int
+    isMoving: Boolean
+    destinationFloor: Int
+    insidePeople: Int
+    capacity: Int
 }
