@@ -1,4 +1,4 @@
-package com.bluestaq.elevator.client;
+package com.bluestaq.elevator.mongoentities;
 
 import com.bluestaq.elevator.codegen.types.KeypadRequest;
 import org.springframework.data.annotation.TypeAlias;

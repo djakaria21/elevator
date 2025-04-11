@@ -1,9 +1,10 @@
-package com.bluestaq.elevator.client;
+package com.bluestaq.elevator.controller;
 
 import com.bluestaq.elevator.codegen.types.BuildingKeypad;
 import com.bluestaq.elevator.codegen.types.KeypadRequest;
 import com.bluestaq.elevator.exceptions.FloorNotFoundException;
 import com.bluestaq.elevator.exceptions.SameFloorException;
+import com.bluestaq.elevator.mongoentities.MongoKeypadRequest;
 import com.bluestaq.elevator.repository.KeypadRepository;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;

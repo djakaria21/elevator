@@ -1,6 +1,6 @@
 package com.bluestaq.elevator;
 
-import com.bluestaq.elevator.client.BuildingKeypadController;
+import com.bluestaq.elevator.controller.BuildingKeypadController;
 import com.bluestaq.elevator.codegen.types.BuildingKeypad;
 import com.bluestaq.elevator.codegen.types.KeypadRequest;
 import com.bluestaq.elevator.exceptions.FloorNotFoundException;
