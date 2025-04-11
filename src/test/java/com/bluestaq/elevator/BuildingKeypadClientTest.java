@@ -1,8 +1,7 @@
 package com.bluestaq.elevator;
 
-import com.bluestaq.elevator.client.BuildingKeypadClient;
+import com.bluestaq.elevator.client.BuildingKeypadController;
 import com.bluestaq.elevator.codegen.types.BuildingKeypad;
-import com.bluestaq.elevator.codegen.types.Floor;
 import com.bluestaq.elevator.codegen.types.KeypadRequest;
 import com.bluestaq.elevator.exceptions.FloorNotFoundException;
 import com.bluestaq.elevator.exceptions.SameFloorException;
@@ -17,20 +16,21 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.util.ArrayList;
 
+import static com.bluestaq.elevator.constants.KafkaConstants.KEYPAD_REQUEST_TOPIC;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-@SpringBootTest(classes = BuildingKeypadClient.class)
+@SpringBootTest(classes = BuildingKeypadController.class)
 public class BuildingKeypadClientTest {
 
     @MockitoBean
     private KafkaTemplate<String, KeypadRequest> kafkaTemplate;
 
     @Autowired
-    private BuildingKeypadClient client;
+    private BuildingKeypadController client;
 
     private BuildingKeypad buildingKeypadFloor1;
     private BuildingKeypad buildingKeypadFloor2;
@@ -64,7 +64,7 @@ public class BuildingKeypadClientTest {
         client.callElevator(buildingKeypadFloor2, 3);
         client.callElevator(buildingKeypadFloor3, 1);
 
-       verify(kafkaTemplate, times(3)).send(eq("ElevatorTopic"), any(KeypadRequest.class));
+       verify(kafkaTemplate, times(3)).send(eq(KEYPAD_REQUEST_TOPIC), any(KeypadRequest.class));
 
        verify(keypadRepository, times(3)).save(any(KeypadRequest.class));
     }
