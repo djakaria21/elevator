@@ -2,7 +2,7 @@ package com.bluestaq.elevator.listeners;
 
 import com.bluestaq.elevator.codegen.types.ElevatorCar;
 import com.bluestaq.elevator.codegen.types.KeypadRequest;
-import com.bluestaq.elevator.datafetchers.FindElevatorCarDatafetcher;
+import com.bluestaq.elevator.services.FindElevatorCarService;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -20,7 +20,7 @@ import static com.bluestaq.elevator.constants.KafkaConstants.KEYPAD_REQUEST_TOPI
 public class ElevatorSystem {
 
     @Autowired
-    private FindElevatorCarDatafetcher findElevatorCarDatafetcher;
+    private FindElevatorCarService findElevatorCarService;
 
     private final KafkaTemplate<String, ElevatorCar> kafkaTemplate;
 
@@ -34,7 +34,7 @@ public class ElevatorSystem {
     public void recieve(ConsumerRecord<String, KeypadRequest> consumerRecord) {
         log.info("Received KeypadRequest: {}", consumerRecord.toString());
         KeypadRequest recievedRequest = consumerRecord.value();
-        Optional<ElevatorCar> elevatorCar = findElevatorCarDatafetcher.getFindElevatorCar(recievedRequest);
+        Optional<ElevatorCar> elevatorCar = findElevatorCarService.getFindElevatorCar(recievedRequest);
         if (elevatorCar.isEmpty()) {
             elevatorCar = waitForAvailableElevator(elevatorCar, recievedRequest);
         } else {
@@ -52,7 +52,7 @@ public class ElevatorSystem {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            elevatorCar = findElevatorCarDatafetcher.getFindElevatorCar(recievedRequest);
+            elevatorCar = findElevatorCarService.getFindElevatorCar(recievedRequest);
         }
 
         if (elevatorCar.isPresent()) {

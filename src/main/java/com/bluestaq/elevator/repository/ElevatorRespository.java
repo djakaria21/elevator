@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface ElevatorRespository extends MongoRepository<ElevatorCar, String> {
 
-    List<ElevatorCar> findValidElevators(int startingFloor, int endingFloor, boolean isMoving);
+    List<ElevatorCar> findValidElevators(boolean isMoving);
 }
