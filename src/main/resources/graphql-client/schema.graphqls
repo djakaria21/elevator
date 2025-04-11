@@ -1,5 +1,5 @@
 type Query {
-    findAndSendElevatorCar(elevatorFilter: Int): [ElevatorCar]
+    findElevatorCar(startingFloor: Int, endingFloor: Int): ElevatorCar
 }
 
 type BuildingKeypad {
