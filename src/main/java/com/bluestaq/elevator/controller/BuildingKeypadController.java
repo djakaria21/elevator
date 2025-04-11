@@ -20,7 +20,7 @@ import static com.bluestaq.elevator.constants.KafkaConstants.KEYPAD_REQUEST_TOPI
 @RestController
 public class BuildingKeypadController {
 
-
+    @Autowired
     private final KafkaTemplate<String, KeypadRequest> kafkaTemplate;
 
     @Autowired
@@ -42,10 +42,11 @@ public class BuildingKeypadController {
     }
 
     @NotNull
-    private static MongoKeypadRequest buildMongoKeypadRequest(BuildingKeypad buildingKeypadFloor1, int destinationFloor) {
+    private static MongoKeypadRequest buildMongoKeypadRequest(BuildingKeypad buildingKeypad, int destinationFloor) {
         //casting is needed in order to have mongo recognize the request and put it in a collection
         MongoKeypadRequest keypadRequest = new MongoKeypadRequest();
-        keypadRequest.setStartingFloor(buildingKeypadFloor1.getCurrentFloor());
+        keypadRequest.setId(buildingKeypad.getId());
+        keypadRequest.setStartingFloor(buildingKeypad.getCurrentFloor());
         keypadRequest.setEndingFloor(destinationFloor);
         return keypadRequest;
     }
