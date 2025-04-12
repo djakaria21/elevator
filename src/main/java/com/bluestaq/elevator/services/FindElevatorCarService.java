@@ -16,7 +16,7 @@ public class FindElevatorCarService {
     @Autowired
     private ElevatorRespository elevatorRepository;
 
-    public Optional<ElevatorCar> getFindElevatorCar(
+    public Optional<ElevatorCar> findNearestAvailableElevatorCar(
             KeypadRequest keypadRequest) {
 
         int startingFloor = keypadRequest.getStartingFloor();

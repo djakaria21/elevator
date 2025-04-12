@@ -1,7 +1,3 @@
-type Query {
-    findElevatorCar(startingFloor: Int, endingFloor: Int): ElevatorCar
-}
-
 type BuildingKeypad {
     id: ID!
     currentFloor: Int

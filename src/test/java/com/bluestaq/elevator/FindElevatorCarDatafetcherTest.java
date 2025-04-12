@@ -74,7 +74,7 @@ public class FindElevatorCarDatafetcherTest {
         elevatorCars = List.of(elevatorCar1, elevatorCar2, elevatorCar4);
         when(elevatorRespository.findValidElevators(false)).thenReturn(elevatorCars);
 
-        Optional<ElevatorCar> result = findElevatorCarDatafetcher.getFindElevatorCar(keypadRequest);
+        Optional<ElevatorCar> result = findElevatorCarDatafetcher.findNearestAvailableElevatorCar(keypadRequest);
 
         assertTrue(result.isPresent());
         assertEquals(elevatorCar1.getId(), result.get().getId());
@@ -85,7 +85,7 @@ public class FindElevatorCarDatafetcherTest {
     void testFindElevatorCar_NoAvailableElevators() {
         when(elevatorRespository.findValidElevators(false)).thenReturn(List.of());
 
-        Optional<ElevatorCar> result = findElevatorCarDatafetcher.getFindElevatorCar(keypadRequest);
+        Optional<ElevatorCar> result = findElevatorCarDatafetcher.findNearestAvailableElevatorCar(keypadRequest);
 
         assertFalse(result.isPresent());
     }

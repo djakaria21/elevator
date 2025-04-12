@@ -41,7 +41,7 @@ public class ElevatorSystem {
     public void recieve(ConsumerRecord<String, KeypadRequest> consumerRecord) {
         log.info("Received KeypadRequest: {}", consumerRecord.value());
         KeypadRequest recievedRequest = gson.fromJson(String.valueOf(consumerRecord.value()), KeypadRequest.class);
-        Optional<ElevatorCar> elevatorCar = findElevatorCarService.getFindElevatorCar(recievedRequest);
+        Optional<ElevatorCar> elevatorCar = findElevatorCarService.findNearestAvailableElevatorCar(recievedRequest);
         if (elevatorCar.isEmpty()) {
             elevatorCar = waitForAvailableElevator(elevatorCar, recievedRequest);
         } else {
@@ -59,7 +59,7 @@ public class ElevatorSystem {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            elevatorCar = findElevatorCarService.getFindElevatorCar(recievedRequest);
+            elevatorCar = findElevatorCarService.findNearestAvailableElevatorCar(recievedRequest);
         }
 
         if (elevatorCar.isPresent()) {

@@ -1,0 +1,44 @@
+{
+	"info": {
+		"_postman_id": "d544e325-f730-4f74-be1f-be98303f5040",
+		"name": "Elevator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43997278"
+	},
+	"item": [
+		{
+			"name": "callElevator",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"currentFloor\":1,\r\n    \"floors\" : [1,2,3]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/callElevator?destinationFloor=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"callElevator"
+					],
+					"query": [
+						{
+							"key": "destinationFloor",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
