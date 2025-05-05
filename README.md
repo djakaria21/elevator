@@ -77,6 +77,34 @@ Compass:
 
 ![keypad_database.png](src/images/keypad_database.png)
 
+### Docker Testing
+
+The project includes Docker support for running tests in an isolated environment:
+
+### Prerequisites
+- Docker installed on your system
+
+### Running Tests in Docker
+```bash
+docker-compose up --build
+```
+
+This will:
+1. Build a Docker image with Java 17 and all dependencies
+2. Run all tests in an isolated container
+3. Output the test results
+
+### Docker Files
+- `Dockerfile`: Configures the test environment with Gradle and Java 17
+- `docker-compose.yml`: Defines the test service configuration
+
+### Configuration Details
+The Docker setup:
+- Uses the official Gradle 7.6.1 image with Java 17
+- Automatically copies all source files
+- Runs the Gradle test task
+- Cleans up after completion
+
 ### Retrospective
 
 #### Good
