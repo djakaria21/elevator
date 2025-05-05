@@ -144,4 +144,4 @@ part of life!
 For
 transparency I did use SOME ai for the project, but mainly for knowledge and some test setup lines.  (Also it gets
 things wrong. Like a LOT.)  Also to edit the readme so it would sound more impressive and confident. Hopefully that's
-ok. I might contrinue working on this project later, I feel like its a really good portfolio piece!
+ok. I might contrinue working on this project later, I feel like its a really good portfolio piece!# VoiceSummoner
